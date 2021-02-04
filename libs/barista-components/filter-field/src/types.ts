@@ -188,7 +188,11 @@ export function isAsyncDtMultiSelectDef<D>(
   multiSelect: DtMultiSelectDef;
   option: DtOptionDef;
 } {
-  return !!(isDtMultiSelectDef<D>(def) && isDtOptionDef<D>(def));
+  return (
+    isDtMultiSelectDef<D>(def) &&
+    isDtOptionDef<D>(def) &&
+    Boolean(def.multiSelect?.async)
+  );
 }
 
 /** Creates a new DtAutocompleteDef onto a provided existing NodeDef or a newly created one. */

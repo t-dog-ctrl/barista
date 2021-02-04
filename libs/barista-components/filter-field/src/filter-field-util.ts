@@ -41,6 +41,7 @@ import {
   isDtRenderType,
   isPartialDtAutocompleteDef,
   isDtMultiSelectValue,
+  isAsyncDtMultiSelectDef,
 } from './types';
 
 /**
@@ -414,7 +415,11 @@ export function findFilterValuesForSources<T>(
         if (isLastSource) {
           return null;
         }
-        if (isAsyncDtAutocompleteDef(def) || isPartialDtAutocompleteDef(def)) {
+        if (
+          isAsyncDtAutocompleteDef(def) ||
+          isAsyncDtMultiSelectDef(def) ||
+          isPartialDtAutocompleteDef(def)
+        ) {
           const asyncDef = asyncDefs.get(def);
           if (asyncDef) {
             parentDef = asyncDef;
