@@ -29,7 +29,7 @@
 
     .dt-filter-field-tag-key,
     .dt-filter-field-tag-value {
-      color: $gray-500;
+      color: $gray-300;
     }
   }
 
@@ -49,7 +49,7 @@
   color: $gray-500;
 
   &[disabled] {
-    color: $gray-300;
+    background-color: #ffffff;
   }
 
   .dt-button-icon {

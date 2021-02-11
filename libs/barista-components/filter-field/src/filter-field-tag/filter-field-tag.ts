@@ -89,14 +89,15 @@ export class DtFilterFieldTag implements OnDestroy {
   // to reflect the state when programatically setting the property.
   @Input()
   get disabled(): boolean {
-    return !this.editable && !this.deletable;
+    return this._disabled;
   }
   set disabled(value: boolean) {
     const coercedValue = coerceBooleanProperty(value);
+    this._disabled = coercedValue;
     this.editable = !coercedValue;
-    this.deletable = !coercedValue;
     this._changeDetectorRef.markForCheck();
   }
+  private _disabled = false;
 
   @Input()
   get _temporarilyDisabled(): boolean {

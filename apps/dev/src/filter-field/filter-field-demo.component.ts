@@ -225,6 +225,18 @@ export class FilterFieldDemo implements AfterViewInit, OnDestroy {
     }
   }
 
+  toggledDisableEditableFirstTag(): void {
+    if (this._firstTag) {
+      this._firstTag.editable = !this._firstTag.editable;
+    }
+  }
+
+  toggledDisableDeletableFirstTag(): void {
+    if (this._firstTag) {
+      this._firstTag.deletable = !this._firstTag.deletable;
+    }
+  }
+
   setValues(): void {
     if (this._dataSource.data === TEST_DATA) {
       this.filterField.filters = [

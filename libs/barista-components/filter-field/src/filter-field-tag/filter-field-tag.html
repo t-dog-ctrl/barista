@@ -33,11 +33,11 @@
   </button>
 </div>
 <button
-  *ngIf="!(_temporarilyDisabled || disabled) && deletable"
+  *ngIf="deletable"
   dt-icon-button
   variant="nested"
   class="dt-filter-field-tag-button"
-  [disabled]="_temporarilyDisabled || !deletable"
+  [disabled]="_temporarilyDisabled || disabled"
   (click)="_handleRemove($event)"
   (keyup)="_handleKeyUp($event)"
   #deleteButton
