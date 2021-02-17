@@ -15,7 +15,7 @@
   <dt-filter-field-tag
     *ngFor="let tagData of _prefixTagData"
     [data]="tagData"
-    [_temporarilyDisabled]="disabled || _isInFilterEditMode"
+    [_temporarilyDisabled]="_isInFilterEditMode"
     (remove)="_handleTagRemove($event)"
     (edit)="_handleTagEdit($event)"
     (navigateTags)="_handleArrowKeyNavigation($event)"

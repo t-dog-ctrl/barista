@@ -28,7 +28,7 @@
       'dt-filter-field-tag-button-nested-temporarily-disabled': _temporarilyDisabled,
       'dt-filter-field-tag-button-nested': !_temporarilyDisabled
     }"
-    [disabled]="disabled"
+    [disabled]="disabled || !editable"
     (click)="_handleEdit($event)"
     (keyup)="_handleKeyUp($event)"
     #editButton
