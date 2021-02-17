@@ -45,7 +45,7 @@ import { LEFT_ARROW, RIGHT_ARROW } from '@angular/cdk/keycodes';
   host: {
     '[attr.role]': `'option'`,
     class: 'dt-filter-field-tag',
-    '[class.dt-filter-field-tag-disabled]': '_temporarilyDisabled || disabled',
+    '[class.dt-filter-field-tag-disabled]': 'disabled',
     '[class.dt-filter-field-tag-read-only]': '!editable',
   },
   encapsulation: ViewEncapsulation.Emulated,
@@ -175,9 +175,10 @@ export class DtFilterFieldTag implements OnDestroy {
   _handleRemove(event: MouseEvent): void {
     // Prevent click from bubbling up, so it does not interfere with autocomplete
     event.stopImmediatePropagation();
-
-    if (!this.disabled) {
-      this.remove.emit(this);
+    if (!this._temporarilyDisabled) {
+      if (!this.disabled) {
+        this.remove.emit(this);
+      }
     }
   }
 
@@ -185,22 +186,25 @@ export class DtFilterFieldTag implements OnDestroy {
   _handleEdit(event: MouseEvent): void {
     // Prevent click from bubbling up, so it does not interfere with autocomplete
     event.stopImmediatePropagation();
-
-    if (!this.disabled) {
-      this.edit.emit(this);
+    if (!this._temporarilyDisabled) {
+      if (!this.disabled) {
+        this.edit.emit(this);
+      }
     }
   }
 
   /** @internal Handles the arrowkey navigation */
   _handleKeyUp(event: KeyboardEvent): void {
-    const keyCode = _readKeyCode(event);
-    if (keyCode === LEFT_ARROW || keyCode === RIGHT_ARROW) {
-      event.stopImmediatePropagation();
+    if (!this._temporarilyDisabled) {
+      const keyCode = _readKeyCode(event);
+      if (keyCode === LEFT_ARROW || keyCode === RIGHT_ARROW) {
+        event.stopImmediatePropagation();
 
-      this.navigateTags.emit({
-        currentTag: this,
-        direction: keyCode === LEFT_ARROW ? 'left' : 'right',
-      });
+        this.navigateTags.emit({
+          currentTag: this,
+          direction: keyCode === LEFT_ARROW ? 'left' : 'right',
+        });
+      }
     }
   }
 

@@ -24,7 +24,11 @@
     dt-button
     variant="nested"
     class="dt-filter-field-tag-label"
-    [disabled]="_temporarilyDisabled || !editable"
+    [ngClass]="{
+      'dt-filter-field-tag-button-nested-temporarily-disabled': _temporarilyDisabled,
+      'dt-filter-field-tag-button-nested': !_temporarilyDisabled
+    }"
+    [disabled]="disabled"
     (click)="_handleEdit($event)"
     (keyup)="_handleKeyUp($event)"
     #editButton
@@ -37,10 +41,20 @@
   dt-icon-button
   variant="nested"
   class="dt-filter-field-tag-button"
-  [disabled]="_temporarilyDisabled || disabled"
+  [ngClass]="{
+    'dt-filter-field-tag-button-nested-temporarily-disabled': _temporarilyDisabled,
+    'dt-filter-field-tag-button-nested': !_temporarilyDisabled
+  }"
+  [disabled]="disabled"
   (click)="_handleRemove($event)"
   (keyup)="_handleKeyUp($event)"
   #deleteButton
 >
-  <dt-icon name="abort" class="dt-filter-field-tag-icon"></dt-icon>
+  <dt-icon
+    name="abort"
+    class="dt-filter-field-tag-icon"
+    [ngClass]="{
+      'dt-filter-field-tag-button-icon-temporarily-disabled': _temporarilyDisabled
+    }"
+  ></dt-icon>
 </button>
